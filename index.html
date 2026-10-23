@@ -463,53 +463,106 @@ dialog form { display: grid; gap: 1rem; max-height: calc(100vh - 64px); overflow
      di browser Anda. Untuk menjadikannya isi bawaan, salin dari
      "Data JSON" dan gantikan objek DEFAULT_DATA di bawah ini.
      ============================================================ */
-  var DEFAULT_DATA = {
-    profile: {
-      brand: "muzaki.aslam",
-      eyebrow: "Mahasiswa Teknologi Elektro · UGM",
-      name: "Muzaki Aslam Mansurin Fatah",
-      lead: "Mahasiswa tahun pertama yang tertarik pada sistem embedded, elektronika, dan pemrograman. Saya sedang membangun dasar teknis lewat praktik langsung.",
-      about: [
-        "Saya mahasiswa tahun pertama Teknologi Elektro di Universitas Gadjah Mada dengan minat yang terus tumbuh pada sistem embedded, elektronika, dan pemrograman.",
-        "Saya sudah mengenal dasar pemrograman, analisis rangkaian, dan pengukuran listrik. Saya termotivasi memperdalam kemampuan teknis, menambah pengalaman praktis, dan berkontribusi pada proyek rekayasa yang inovatif."
-      ],
-      chips: ["Embedded systems", "Elektronika", "Pemrograman"],
-      facts: [
-        { k: "Studi", v: "Teknologi Elektro" },
-        { k: "Kampus", v: "Universitas Gadjah Mada" },
-        { k: "Lokasi", v: "Bantul" },
-        { k: "Fokus belajar", v: "Python · Proteus" }
-      ],
-      cta: "Terbuka untuk belajar dan berkolaborasi.",
-      email: "muzakiaslammansurinfatah@mail.ugm.ac.id",
-      linkedin: "https://www.linkedin.com/in/muzakiaslamf",
-      place: "Bantul, Yogyakarta"
-    },
-    education: [
-      { when: "2026 – sekarang", title: "Universitas Gadjah Mada", desc: "Teknologi Elektro" },
-      { when: "2023 – 2026", title: "SMA Negeri 1 Sanden", desc: "Pendidikan menengah atas" }
+var DEFAULT_DATA = {
+  "profile": {
+    "brand": "My.Portofolio",
+    "eyebrow": "Mahasiswa Teknologi Rekayasa Elektro · UGM",
+    "name": "Hi! namaku Muzaki Aslam",
+    "lead": "Mahasiswa tahun pertama yang tertarik pada sistem embedded, elektronika, dan pemrograman. Saya sedang membangun dasar teknis lewat praktik langsung.",
+    "about": [
+      "Saya mahasiswa tahun pertama Teknologi Elektro di Universitas Gadjah Mada dengan minat yang terus tumbuh pada sistem embedded, elektronika, dan pemrograman.",
+      "Saya sudah mengenal dasar pemrograman, analisis rangkaian, dan pengukuran listrik. Saya termotivasi memperdalam kemampuan teknis, menambah pengalaman praktis, dan berkontribusi pada proyek rekayasa yang inovatif."
     ],
-    hard: [
-      { name: "Pemrograman Python", level: "Dasar", percent: 40, desc: "Variabel, pernyataan kondisional, perulangan, dan fungsi sederhana." },
-      { name: "Pengukuran listrik", level: "Dasar", percent: 40, desc: "Mengoperasikan alat ukur untuk tegangan, arus, dan hambatan." },
-      { name: "Simulasi rangkaian (Proteus)", level: "Dasar", percent: 35, desc: "Merancang dan mensimulasikan rangkaian dasar." }
+    "chips": [
+      "Embedded systems",
+      "Elektronika",
+      "Pemrograman"
     ],
-    soft: [
-      { text: "Analytical problem solving" },
-      { text: "Time management & accountability" },
-      { text: "Team collaboration" }
-    ],
-    experience: [],
-    projects: [
+    "facts": [
       {
-        title: "Latihan Python dasar",
-        desc: "Mempraktikkan pemrograman Python dasar: variabel, pernyataan kondisional, perulangan, dan fungsi sederhana.",
-        tags: ["Python", "Logika"],
-        link: "",
-        code: "for n in range(1, 6):\n    if n % 2 == 0:\n        print(n, \"genap\")\n    else:\n        print(n, \"ganjil\")\n# contoh ilustrasi"
+        "k": "Studi",
+        "v": "Teknologi Rekayasa Elektro"
+      },
+      {
+        "k": "Kampus",
+        "v": "Universitas Gadjah Mada"
+      },
+      {
+        "k": "Lokasi",
+        "v": "Bantul"
+      },
+      {
+        "k": "Fokus belajar",
+        "v": "Teknologi"
       }
-    ]
-  };
+    ],
+    "cta": "Terbuka untuk belajar dan berkolaborasi.",
+    "email": "muzakiaslammansurinfatah@mail.ugm.ac.id",
+    "linkedin": "https://www.linkedin.com/in/muzakiaslamf",
+    "place": "Bantul, Yogyakarta"
+  },
+
+  "education": [
+    {
+      "when": "2026 – sekarang",
+      "title": "Universitas Gadjah Mada",
+      "desc": "Teknologi Elektro"
+    },
+    {
+      "when": "2023 – 2026",
+      "title": "SMA Negeri 1 Sanden",
+      "desc": "Pendidikan menengah atas"
+    }
+  ],
+
+  "hard": [
+    {
+      "name": "Pemrograman Python",
+      "level": "Dasar",
+      "percent": 40,
+      "desc": "Variabel, pernyataan kondisional, perulangan, dan fungsi sederhana."
+    },
+    {
+      "name": "Pengukuran listrik",
+      "level": "Dasar",
+      "percent": 40,
+      "desc": "Mengoperasikan alat ukur untuk tegangan, arus, dan hambatan."
+    },
+    {
+      "name": "Simulasi rangkaian (Proteus)",
+      "level": "Dasar",
+      "percent": 35,
+      "desc": "Merancang dan mensimulasikan rangkaian dasar."
+    }
+  ],
+
+  "soft": [
+    {
+      "text": "Analytical problem solving"
+    },
+    {
+      "text": "Time management & accountability"
+    },
+    {
+      "text": "Team collaboration"
+    }
+  ],
+
+  "experience": [],
+
+  "projects": [
+    {
+      "title": "Latihan Python dasar",
+      "desc": "Mempraktikkan pemrograman Python dasar: variabel, pernyataan kondisional, perulangan, dan fungsi sederhana.",
+      "tags": [
+        "Python",
+        "Logika"
+      ],
+      "link": "",
+      "code": "for n in range(1, 6):\n    if n % 2 == 0:\n        print(n, \"genap\")\n    else:\n        print(n, \"ganjil\")\n# contoh ilustrasi"
+    }
+  ]
+};
 
   /* ---------- penyimpanan (localStorage, hanya di browser ini) ---------- */
   var KEY = "portofolio-muzaki-v1";
