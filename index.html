@@ -1060,16 +1060,68 @@ var DEFAULT_DATA = {
   }
   window.addEventListener("hashchange", function () { setTimeout(arm, 60); });
   setTimeout(arm, 120);
-  if (window.matchMedia && matchMedia("(hover: hover)").matches) {
-    var g = document.createElement("div"); g.className = "glow"; document.body.appendChild(g);
-    var raf = 0;
-    window.addEventListener("pointermove", function (e) {
-      if (raf) return;
-      raf = requestAnimationFrame(function () {
-        raf = 0; g.style.transform = "translate(" + (e.clientX - 200) + "px," + (e.clientY - 200) + "px)"; g.style.opacity = 1;
-      });
-    }, { passive: true });
-  }
+  // Cahaya oranye untuk desktop dan HP
+var g = document.createElement("div");
+g.className = "glow";
+document.body.appendChild(g);
+
+var raf = 0;
+
+// DESKTOP - mengikuti mouse
+if (window.matchMedia && matchMedia("(hover: hover)").matches) {
+
+  window.addEventListener("pointermove", function (e) {
+    if (raf) return;
+
+    raf = requestAnimationFrame(function () {
+      raf = 0;
+
+      g.style.transform =
+        "translate(" + (e.clientX - 200) + "px," +
+        (e.clientY - 200) + "px)";
+
+      g.style.opacity = 1;
+    });
+  }, { passive: true });
+
+} else {
+
+  // HP - muncul ketika layar disentuh
+  window.addEventListener("touchstart", function (e) {
+    var touch = e.touches[0];
+    if (!touch) return;
+
+    g.style.transform =
+      "translate(" + (touch.clientX - 200) + "px," +
+      (touch.clientY - 200) + "px)";
+
+    g.style.opacity = 1;
+  }, { passive: true });
+
+
+  // HP - mengikuti gerakan jari
+  window.addEventListener("touchmove", function (e) {
+    var touch = e.touches[0];
+
+    if (!touch || raf) return;
+
+    raf = requestAnimationFrame(function () {
+      raf = 0;
+
+      g.style.transform =
+        "translate(" + (touch.clientX - 200) + "px," +
+        (touch.clientY - 200) + "px)";
+
+      g.style.opacity = 1;
+    });
+  }, { passive: true });
+
+
+  // HP - menghilang setelah jari dilepas
+  window.addEventListener("touchend", function () {
+    g.style.opacity = 0;
+  }, { passive: true });
+}
 })();
 </script>
 
