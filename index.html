@@ -184,6 +184,128 @@ h2.title { font-family: var(--font-display); font-weight: 600; font-size: clamp(
 .pbody .chips { margin-top: .25rem; }
 .plink { font-weight: 600; font-size: .92rem; color: var(--accent); width: fit-content; }
 
+/* detail proyek */
+.project-detail {
+  max-width: 900px;
+  margin-inline: auto;
+  padding-block: 3.5rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 3rem;
+  transition: color .2s ease, transform .2s ease;
+}
+
+.back-link:hover {
+  color: var(--accent);
+  transform: translateX(-3px);
+}
+
+.detail-head {
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.detail-head .title {
+  font-size: clamp(2.7rem, 7vw, 5rem);
+  margin-top: .5rem;
+}
+
+.detail-lead {
+  color: var(--muted);
+  max-width: 650px;
+  font-size: 1.05rem;
+  margin: 1.2rem 0 0;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 2rem;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.detail-block {
+  padding: 2rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  min-height: 220px;
+}
+
+.detail-number {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: .75rem;
+}
+
+.detail-block h3 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin: .8rem 0;
+}
+
+.detail-block p {
+  color: var(--muted);
+  margin: 0;
+  white-space: pre-line;
+}
+
+.detail-code {
+  margin-top: 3rem;
+}
+
+.detail-code pre {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.detail-code code {
+  font-family: var(--font-mono);
+  font-size: .85rem;
+  line-height: 1.7;
+}
+
+.detail-link {
+  display: inline-flex;
+  margin-top: 1.5rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 650px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-block {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+
+  .project-detail {
+    padding-block: 2rem;
+  }
+
+  .back-link {
+    margin-bottom: 2rem;
+  }
+}
+  
 /* contact */
 .contact { display: grid; gap: 1.5rem; }
 .contact h2.title { max-width: 30rem; }
@@ -371,6 +493,55 @@ dialog form { display: grid; gap: 1rem; max-height: calc(100vh - 64px); overflow
     </section>
   </div>
 
+  <!-- DETAIL PROYEK -->
+<div class="page" data-page="detail-proyek" hidden>
+  <section class="project-detail">
+
+    <a class="back-link" href="#/proyek">← Kembali ke Proyek</a>
+
+    <div class="detail-head">
+      <span class="tag">Project Detail</span>
+      <h2 class="title" id="detailProjectTitle"></h2>
+      <p class="detail-lead" id="detailProjectDesc"></p>
+      <div class="chips" id="detailProjectTags"></div>
+    </div>
+
+    <div class="detail-grid">
+
+      <div class="detail-block">
+        <span class="detail-number">01</span>
+        <h3>Tentang Proyek</h3>
+        <p id="detailProjectAbout"></p>
+      </div>
+
+      <div class="detail-block">
+        <span class="detail-number">02</span>
+        <h3>Tujuan</h3>
+        <p id="detailProjectGoal"></p>
+      </div>
+
+      <div class="detail-block">
+        <span class="detail-number">03</span>
+        <h3>Proses</h3>
+        <p id="detailProjectProcess"></p>
+      </div>
+
+      <div class="detail-block">
+        <span class="detail-number">04</span>
+        <h3>Hasil</h3>
+        <p id="detailProjectResult"></p>
+      </div>
+
+    </div>
+
+    <div class="detail-code" id="detailCodeBox" hidden>
+      <span class="tag">Code Preview</span>
+      <pre><code id="detailProjectCode"></code></pre>
+    </div>
+
+  </section>
+</div>
+  
   <div class="page" data-page="proyek" hidden>
     <section id="proyek">
       <div class="sec-head"><h2 class="title">Proyek &amp; kegiatan</h2><span class="tag">Praktik</span><span class="sec-add" id="add-projects"></span></div>
@@ -552,15 +723,27 @@ var DEFAULT_DATA = {
 
   "projects": [
     {
-      "title": "Latihan Python dasar",
-      "desc": "Mempraktikkan pemrograman Python dasar: variabel, pernyataan kondisional, perulangan, dan fungsi sederhana.",
-      "tags": [
-        "Python",
-        "Logika"
-      ],
-      "link": "",
-      "code": "for n in range(1, 6):\n    if n % 2 == 0:\n        print(n, \"genap\")\n    else:\n        print(n, \"ganjil\")\n# contoh ilustrasi"
-    }
+  "title": "Latihan Python dasar",
+
+  "desc": "Mempraktikkan pemrograman Python dasar: variabel, pernyataan kondisional, perulangan, dan fungsi sederhana.",
+
+  "tags": [
+    "Python",
+    "Logika"
+  ],
+
+  "link": "",
+
+  "code": "for n in range(1, 6):\n    if n % 2 == 0:\n        print(n, \"genap\")\n    else:\n        print(n, \"ganjil\")",
+
+  "about": "Proyek latihan ini dibuat sebagai bagian dari proses belajar dasar pemrograman menggunakan Python. Fokus utama latihan adalah memahami bagaimana sebuah program menerima dan mengolah data menggunakan logika sederhana.",
+
+  "goal": "Memahami konsep dasar Python seperti variabel, kondisi, perulangan, serta membangun pola pikir logis dalam menyelesaikan masalah sederhana.",
+
+  "process": "Mempelajari sintaks dasar Python, kemudian mencoba membuat beberapa program sederhana menggunakan percabangan if-else dan perulangan. Program diuji dengan beberapa nilai untuk memastikan logika berjalan sesuai yang diharapkan.",
+
+  "result": "Berhasil memahami penggunaan variabel, conditional statement, loop, dan logika dasar untuk membuat program sederhana."
+}
   ]
 };
 
@@ -583,7 +766,20 @@ var DEFAULT_DATA = {
     out.hard = arr(d && d.hard).map(function (e) { return { name: str(e.name), level: str(e.level), percent: clampPct(e.percent), desc: str(e.desc) }; });
     out.soft = arr(d && d.soft).map(function (e) { return { text: str(e.text) }; });
     out.experience = arr(d && d.experience).map(function (e) { return { when: str(e.when), title: str(e.title), org: str(e.org), desc: str(e.desc) }; });
-    out.projects = arr(d && d.projects).map(function (e) { return { title: str(e.title), desc: str(e.desc), tags: arr(e.tags).map(str).filter(Boolean), link: str(e.link), code: str(e.code) }; });
+    out.projects = arr(d && d.projects).map(function (e) {
+  return {
+    title: str(e.title),
+    desc: str(e.desc),
+    tags: arr(e.tags).map(str).filter(Boolean),
+    link: str(e.link),
+    code: str(e.code),
+
+    about: str(e.about),
+    goal: str(e.goal),
+    process: str(e.process),
+    result: str(e.result)
+  };
+});
     return out;
   }
   function clampPct(n) { n = parseInt(n, 10); if (isNaN(n)) n = 50; return Math.max(0, Math.min(100, n)); }
@@ -658,12 +854,71 @@ var DEFAULT_DATA = {
     },
     projects: {
       noun: "proyek",
+    
       fields: [
-        { k: "title", l: "Nama proyek", req: true },
-        { k: "desc", l: "Deskripsi", t: "textarea", rows: 3 },
-        { k: "tags", l: "Tag", t: "tags", ph: "Arduino, C++, Sensor", hint: "Pisahkan dengan koma." },
-        { k: "link", l: "Tautan proyek (opsional)", ph: "https://github.com/...", hint: "Harus diawali http:// atau https://" },
-        { k: "code", l: "Cuplikan kode (opsional)", t: "textarea", rows: 5, mono: true, hint: "Ditampilkan sebagai pratinjau di kartu proyek." }
+        {
+          k: "title",
+          l: "Nama proyek",
+          req: true
+        },
+    
+        {
+          k: "desc",
+          l: "Deskripsi singkat",
+          t: "textarea",
+          rows: 3
+        },
+    
+        {
+          k: "tags",
+          l: "Tag",
+          t: "tags",
+          ph: "Python, Arduino, Elektronika",
+          hint: "Pisahkan dengan koma."
+        },
+    
+        {
+          k: "link",
+          l: "Tautan proyek (opsional)",
+          ph: "https://github.com/...",
+          hint: "Harus diawali http:// atau https://"
+        },
+    
+        {
+          k: "about",
+          l: "Tentang proyek",
+          t: "textarea",
+          rows: 4
+        },
+    
+        {
+          k: "goal",
+          l: "Tujuan",
+          t: "textarea",
+          rows: 4
+        },
+    
+        {
+          k: "process",
+          l: "Proses pengerjaan",
+          t: "textarea",
+          rows: 5
+        },
+    
+        {
+          k: "result",
+          l: "Hasil",
+          t: "textarea",
+          rows: 4
+        },
+    
+        {
+          k: "code",
+          l: "Cuplikan kode (opsional)",
+          t: "textarea",
+          rows: 6,
+          mono: true
+        }
       ]
     }
   };
@@ -836,9 +1091,64 @@ var DEFAULT_DATA = {
           h("h3", {}, p.title),
           p.desc ? h("p", {}, p.desc) : null,
           p.tags.length ? h("div", { class: "chips" }, p.tags.map(function (t) { return h("span", { class: "chip" }, t); })) : null,
-          url ? h("a", { class: "plink", href: url, target: "_blank", rel: "noopener" }, "Buka proyek →") : null,
+          h("a", {
+            class: "plink",
+            href: "#/proyek/" + i
+          }, "Lihat detail →"),
+          
+          url ? h("a", {
+            class: "plink",
+            href: url,
+            target: "_blank",
+            rel: "noopener"
+          }, "Buka proyek eksternal →") : null,
           controls("projects", i)));
     })));
+  }
+
+  function renderProjectDetail(index) {
+
+    var p = data.projects[index];
+  
+    if (!p) {
+      location.hash = "#/proyek";
+      return;
+    }
+  
+    $("detailProjectTitle").textContent = p.title;
+    $("detailProjectDesc").textContent = p.desc;
+  
+    $("detailProjectAbout").textContent =
+      p.about || "Belum ada informasi tambahan.";
+  
+    $("detailProjectGoal").textContent =
+      p.goal || "Belum ada informasi tujuan.";
+  
+    $("detailProjectProcess").textContent =
+      p.process || "Belum ada informasi proses.";
+  
+    $("detailProjectResult").textContent =
+      p.result || "Belum ada informasi hasil.";
+  
+    // TAG
+    var tagBox = $("detailProjectTags");
+    tagBox.replaceChildren();
+  
+    p.tags.forEach(function (tag) {
+      tagBox.append(
+        h("span", { class: "chip" }, tag)
+      );
+    });
+  
+    // CODE
+    var codeBox = $("detailCodeBox");
+  
+    if (p.code) {
+      $("detailProjectCode").textContent = p.code;
+      codeBox.hidden = false;
+    } else {
+      codeBox.hidden = true;
+    }
   }
 
   function renderProfile() {
@@ -860,7 +1170,7 @@ var DEFAULT_DATA = {
     $("mailText").textContent = p.email;
     var li = $("linkedin"), url = safeUrl(p.linkedin);
     li.hidden = !url; if (url) li.href = url;
-    $("copy").textContent = "© " + new Date().getFullYear() + " " + p.name;
+    $("copy").textContent = "© " + new Date().getFullYear() + " Muzaki Aslam Mansurin Fatah";
     $("place").textContent = p.place;
     document.title = "Portofolio " + p.name.split(" ").slice(0, 2).join(" ");
   }
@@ -1012,29 +1322,108 @@ var DEFAULT_DATA = {
     return m && PAGE_TITLES.hasOwnProperty(m[1]) ? m[1] : "home";
   }
   function route() {
+
+    var hash = location.hash || "#/home";
+  
+    // =========================
+    // DETAIL PROYEK
+    // =========================
+    var projectMatch = hash.match(/^#\/proyek\/(\d+)$/);
+  
+    if (projectMatch) {
+  
+      var index = Number(projectMatch[1]);
+  
+      // Sembunyikan semua halaman
+      document.querySelectorAll(".page").forEach(function (el) {
+        el.hidden = el.getAttribute("data-page") !== "detail-proyek";
+      });
+  
+      // Tetap tandai menu Proyek sebagai aktif
+      document.querySelectorAll("nav a").forEach(function (a) {
+        a.classList.toggle(
+          "on",
+          a.getAttribute("data-page") === "proyek"
+        );
+      });
+  
+      // Isi halaman detail
+      renderProjectDetail(index);
+  
+      // Judul browser
+      if (data.projects[index]) {
+        document.title =
+          data.projects[index].title + " · Portofolio Muzaki Aslam";
+      }
+  
+      closeMenu();
+      window.scrollTo(0, 0);
+  
+      return;
+    }
+  
+  
+    // =========================
+    // HALAMAN BIASA
+    // =========================
     var p = currentPage();
-    document.querySelectorAll(".page").forEach(function (el) { el.hidden = el.getAttribute("data-page") !== p; });
-    document.querySelectorAll("nav a").forEach(function (a) { a.classList.toggle("on", a.getAttribute("data-page") === p); });
-    var base = "Portofolio " + data.profile.name.split(" ").slice(0, 2).join(" ");
-    document.title = PAGE_TITLES[p] ? PAGE_TITLES[p] + " · " + base : base;
+  
+    document.querySelectorAll(".page").forEach(function (el) {
+      el.hidden = el.getAttribute("data-page") !== p;
+    });
+  
+    document.querySelectorAll("nav a").forEach(function (a) {
+      a.classList.toggle(
+        "on",
+        a.getAttribute("data-page") === p
+      );
+    });
+  
+    var base =
+      "Portofolio " +
+      data.profile.name.split(" ").slice(0, 2).join(" ");
+  
+    document.title =
+      PAGE_TITLES[p]
+        ? PAGE_TITLES[p] + " · " + base
+        : base;
+  
     closeMenu();
     window.scrollTo(0, 0);
     observeBars();
   }
   window.addEventListener("hashchange", function () { curPage = null; route(); });
   document.addEventListener("click", function (e) {
-    var a = e.target.closest && e.target.closest('a[href^="#/"]');
-    if (!a) return;
-    var m = a.getAttribute("href").match(/^#\/([a-z]+)/);
-    if (!m || !PAGE_TITLES.hasOwnProperty(m[1])) return;
-    e.preventDefault();
-    curPage = m[1];
-    try { history.replaceState(null, "", "#/" + m[1]); } catch (err) {}
-    route();
-  });
-  $("toContact").addEventListener("click", function () {
-    var el = $("kontak"); if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
-  });
+      var a = e.target.closest &&
+              e.target.closest('a[href^="#/"]');
+      if (!a) return;
+      var href = a.getAttribute("href");
+      if (/^#\/proyek\/\d+$/.test(href)) {
+        e.preventDefault();
+        try {
+          history.pushState(null, "", href);
+        } catch (err) {
+          location.hash = href;
+        }
+        route();
+        return;
+      }
+      // Navigasi halaman biasa
+      var m = href.match(/^#\/([a-z]+)$/);
+      if (!m || !PAGE_TITLES.hasOwnProperty(m[1])) {
+        return;
+      }
+      e.preventDefault();
+      curPage = m[1];
+      try {
+        history.replaceState(
+          null,
+          "",
+          "#/" + m[1]
+        );
+      } catch (err) {}
+      route();
+    });
 
   render();
   route();
